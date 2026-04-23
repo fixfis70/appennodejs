@@ -43,10 +43,11 @@ router.put('/:id', async (req, res) => {
     const {id} = req.params;
     const {idmarca, nombre, precio, garantia, descripcion,fechacompra} = req.body;
 
-    if (!nombremarca) {
+    if (!idmarca || !nombre || !precio || !garantia || !fechacompra){
         return res.status(400).json({success: false});
     }
-    const [result] = await pool.query("update marcas set nombremarca = ? where id = ?",[nombremarca,id]);
+
+    const [result] = await pool.query("update productos set idmarca = ? and nombre = ? and precio = ? and garantia = ? and descripcion= ? and fechacompra = ? where id = ?",[idmarca, nombre, precio, garantia, descripcion,fechacompra,id]);
     if (result.affectedRows) {
         return res.status(201).json({success: true, data: "Se actualizó el dato"});
     } else {
