@@ -14,7 +14,7 @@ const pool = mysql.createPool({
 })
 
 (async () => {
-    try {dd
+    try {
         const conn = await pool.getConnection()
         console.log('Connected to database')
         conn.release()
