@@ -10,16 +10,16 @@ const pool = mysql.createPool({
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 50,
-    timezone: '-05:00'
-})
+    timezone: '00:00'
+});
 
 (async () => {
     try {
-        const conn = await pool.getConnection()
-        console.log('Connected to database')
-        conn.release()
+        const conn = await pool.getConnection();
+        conn.release();
+        console.log('Connected to database');
     } catch (err){
-
+        console.error(err)
     }
 })();
 

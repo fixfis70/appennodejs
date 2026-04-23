@@ -7,7 +7,7 @@ const cors = require('cors');
 const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 // funciones intermedias
 app.use(cors()); //backend - fronted
@@ -22,7 +22,7 @@ app.use('/api/productos',require('./@routes/producto'));
 app.use('/api/marcas',require('./@routes/marcas'));
 
 app.get('/{*path}', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public','index.html'));
+    res.sendFile(path.join(__dirname, '@public','index.html'));
 })
 app.use((err, req, res, next) =>{
     console.error(err);
